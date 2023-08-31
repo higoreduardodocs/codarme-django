@@ -1,2 +1,11 @@
-# codarme-django
-REST API development project with django
+# :desktop_computer: REST API Django
+
+## :briefcase: Stacks
+
+✅ Python
+✅ Django/Flask
+
+## :hammer: Tools
+
+- Git (`git -v`)
+- VS Code
