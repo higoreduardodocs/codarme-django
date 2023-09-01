@@ -48,3 +48,7 @@ class AgendamentoDetail(generics.RetrieveUpdateDestroyAPIView):
   serializer_class = AgendamentoSerializer
   lookup_field = "id"
   permission_classes = [IsPrestador]
+
+  def perform_destroy(self, instance):
+    instance.cancelado = True
+    instance.save()

@@ -6,10 +6,10 @@ POST http://localhost:8000/api/agendamentos/
 Content-Type: application/json
 
 {
-  "data_agendamento": "2023-10-20T13:30:00",
+  "data_agendamento": "2023-10-20T16:00:00",
   "nome_cliente": "Customer default",
-  "email_cliente": "customer@email.com",
-  "telefone_cliente": "123456789",
+  "email_cliente": "customer@email.com.br",
+  "telefone_cliente": "+55123456789",
   "prestador": "bhigoreduardo"
 }
 
@@ -44,5 +44,5 @@ Authorization: Basic bhigoreduardo:admin
 }
 
 ###
-DELETE http://localhost:8000/api/agendamentos/2/
+DELETE http://localhost:8000/api/agendamentos/3/
 Authorization: Basic bhigoreduardo:admin

@@ -28,3 +28,15 @@ class AgendamentoSerializer(serializers.ModelSerializer):
       raise serializers.ValidationError("Horário indisponível")
     
     return value
+  
+  def validate(self, attrs):
+    email_cliente = attrs.get("email_cliente", "")
+    telefone_cliente = attrs.get("telefone_cliente", "")
+    data_agendamento = attrs.get("data_agendamento", "")
+
+    if email_cliente.endswith(".br") and telefone_cliente.startswith("+") and not telefone_cliente.startswith("+55"):
+      raise serializers.ValidationError("Contatos do cliente devem ser do mesmo país de origem")
+    if Agendamento.objects.filter(email_cliente=email_cliente, data_agendamento=data_agendamento).exists():
+      raise serializers.ValidationError("Cliente já reservou o horário")
+    
+    return attrs
