@@ -1,4 +1,7 @@
 ###
+GET http://localhost:8000/api/agendamentos/horarios/?data_agendamento=2023-10-20
+
+###
 POST http://localhost:8000/api/agendamentos/
 Content-Type: application/json
 
@@ -35,4 +38,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8000/api/agendamentos/2/
+DELETE http://localhost:8000/api/agendamentos/1/
