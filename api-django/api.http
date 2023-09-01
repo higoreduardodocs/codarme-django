@@ -9,33 +9,40 @@ Content-Type: application/json
   "data_agendamento": "2023-10-20T10:30:00",
   "nome_cliente": "Customer default",
   "email_cliente": "customer@email.com",
-  "telefone_cliente": "123456789"
+  "telefone_cliente": "123456789",
+  "prestador": "bhigoreduardo"
 }
 
 ###
-GET http://localhost:8000/api/agendamentos/
+GET http://localhost:8000/api/agendamentos/?username=bhigoreduardo
+Authorization: Basic bhigoreduardo:admin
 
 ###
-GET http://localhost:8000/api/agendamentos/1/
+GET http://localhost:8000/api/agendamentos/2/?username=bhigoreduardo
+Authorization: Basic bhigoreduardo:admin
 
 ###
-PUT http://localhost:8000/api/agendamentos/1/
+PUT http://localhost:8000/api/agendamentos/2/
 Content-Type: application/json
+Authorization: Basic bhigoreduardo:admin
 
 {
   "data_agendamento": "2023-08-30T23",
   "nome_cliente": "Nome",
   "email_cliente": "email@email.com",
-  "telefone_cliente": "988309"
+  "telefone_cliente": "988309",
+  "prestador": "bhigoreduardo"
 }
 
 ###
-PATCH http://localhost:8000/api/agendamentos/1/
+PATCH http://localhost:8000/api/agendamentos/2/
 Content-Type: application/json
+Authorization: Basic bhigoreduardo:admin
 
 {
   "nome_cliente": "Nome cliente"
 }
 
 ###
-DELETE http://localhost:8000/api/agendamentos/1/
+DELETE http://localhost:8000/api/agendamentos/2/
+Authorization: Basic bhigoreduardo:admin

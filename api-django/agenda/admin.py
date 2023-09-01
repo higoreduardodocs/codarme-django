@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from agenda.models import Agendamento
+
+
+admin.site.register(Agendamento)
