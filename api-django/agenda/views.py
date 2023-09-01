@@ -1,10 +1,11 @@
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from django.http.response import JsonResponse
+from django.contrib.auth.models import User
 from datetime import datetime
 
 from agenda.models import Agendamento
-from agenda.serializers import AgendamentoSerializer
+from agenda.serializers import AgendamentoSerializer, PrestadorSerializer
 from agenda.utils import get_horarios_disponiveis
 
 @api_view(http_method_names=["GET"])
@@ -52,3 +53,7 @@ class AgendamentoDetail(generics.RetrieveUpdateDestroyAPIView):
   def perform_destroy(self, instance):
     instance.cancelado = True
     instance.save()
+
+class PrestadorList(generics.ListAPIView):
+  queryset = User.objects.all()
+  serializer_class = PrestadorSerializer

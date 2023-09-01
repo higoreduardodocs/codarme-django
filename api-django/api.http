@@ -46,3 +46,6 @@ Authorization: Basic bhigoreduardo:admin
 ###
 DELETE http://localhost:8000/api/agendamentos/3/
 Authorization: Basic bhigoreduardo:admin
+
+###
+GET http://localhost:8000/api/agendamentos/prestadores/
