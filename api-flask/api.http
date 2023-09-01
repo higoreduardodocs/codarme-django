@@ -1,0 +1,35 @@
+###
+GET http://localhost:3000/api/eventos/
+
+###
+GET http://localhost:3000/api/eventos/10/
+
+###
+POST http://localhost:3000/api/eventos/
+Content-Type: application/json
+
+{
+  "nome": "Curso de Golang",
+  "local": "Sala 12"
+}
+
+###
+PUT http://localhost:3000/api/eventos/1/
+Content-Type: application/json
+
+{
+  "nome": "Curso Python IA",
+  "local": "Sala 20"
+}
+
+###
+PATCH http://localhost:3000/api/eventos/1/
+Content-Type: application/json
+
+{
+  "nome": "Curso",
+  "local": "Sala 30"
+}
+
+###
+DELETE http://localhost:3000/api/eventos/1/
