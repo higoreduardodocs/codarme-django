@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalhe evento</title>
+  </head>
+  <body>
+    <ul>
+      <li>ID: {{evento.id}}</li>
+      <li>Nome: {{evento.nome}}</li>
+      <li>Categoria: {{evento.categoria.nome}}</li>
+      {% if evento.local %}<li>Local: {{evento.local}}</li>{% endif %}
+      {% if evento.link %}<li>Link: {{evento.link}}</li>{% endif %}
+      <li>Data:
+        {% if evento.data %}
+          {{ evento.data | date:"d/m/Y" }}
+        {% else %}
+          a definir.
+        {% endif %}
+      </li>
+      <li>Participantes: {{evento.participantes}}</li>
+    </ul>
+
+    <form action="{% url 'evento_actions' %}" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="evento_id" value="{{evento.id}}" />
+      <input type="submit" value="Participar" />
+    </form>
+
+    <a href="{% url 'evento_list' %}">Lista de eventos</a>
+  </body>
+</html>

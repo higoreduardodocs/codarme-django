@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de eventos</title>
+    <style>
+      .flex { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
+      form { display: flex; flex-direction: column; gap: 10px; }
+      table { border-collapse: collapse; }
+      td, th { border: 1px solid #ddd; text-align: left; padding: 8px; }
+    </style>
+  </head>
+  <body>
+    <div class="flex">
+      <div>
+        <h3>Cadastrar categoria</h3>
+        <form action="{% url 'categoria_list' %}" method="POST">
+          {% csrf_token %}
+          <input type="text" name="nome" placeholder="Nome do evento" required />
+          <input type="submit" value="Cadastrar categoria" />
+        </form>
+      </div>
+
+      <div>
+        <h3>Cadastrar evento</h3>
+        <form action="{% url 'evento_list' %}" method="POST">
+          {% csrf_token %}
+          <input type="text" name="nome" placeholder="Nome do evento" required />
+          <select required name="categoria_id">
+            <option selected disabled value="">Selecione categoria</option>
+            {% for categoria in categorias %}
+              <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+            {% endfor %}
+          </select>
+          <input type="text" name="local" placeholder="Local do evento" />
+          <input type="text" name="link" placeholder="Link do evento" />
+          <input type="date" name="data" />
+          <input type="submit" value="Cadastrar evento" />
+        </form>
+      </div>
+    </div>
+
+    <div class="flex">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for categoria in categorias %}
+            <tr>
+              <td>{{categoria.id}}</td>
+              <td>{{ categoria.nome }}</td>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Local/Link</th>
+            <th>Data</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for evento in eventos %}
+            <tr>
+              <td>{{evento.id}}</td>
+              <td>{{evento.nome}}</td>
+              <td>{{evento.categoria.nome}}</td>
+              <td>{% firstof evento.local evento.link %}</td>
+              <td>
+                {% if evento.data %} {{ evento.data | date:"d/m/Y" }}
+                {% else %} a definir.
+                {% endif %}
+              </td>
+              <td><a href="{% url 'evento_detail' evento.id %}">Ver detalhes</a></td>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
