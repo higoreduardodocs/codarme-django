@@ -1,13 +1,14 @@
 from pathlib import Path
+from dotenv import load_dotenv
 import sys
+import os
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
-SECRET_KEY = 'django-insecure-0h_%c=%b9k-b5#u&2bdmx=@!7_k6uh85)_-7)_7n*y1ddrgr5='
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+# breakpoint()
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -85,3 +86,4 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
+# python manage.py test
