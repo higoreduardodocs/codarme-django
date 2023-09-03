@@ -1,6 +1,7 @@
 from rest_framework.test import APITestCase
 from django.contrib.auth.models import User
 from datetime import datetime, timezone
+from unittest import mock
 import json
 
 from agenda.models import Agendamento
@@ -306,6 +307,24 @@ class TestHorariosList(APITestCase):
     self.assertEqual(last_date, datetime(2023, 9, 4, 17, 30, tzinfo=timezone.utc))
 
   def test_feriado(self):
+    response = self.client.get("/api/agendamentos/horarios/?data_agendamento=2023-12-25")
+
+    self.assertEqual(json.loads(response.content), [])
+
+  @mock.patch("agenda.libs.brasil_api.is_feriado", return_value=False)
+  def test_mock_dias_disponiveis(self, _):
+    response = self.client.get("/api/agendamentos/horarios/?data_agendamento=2023-09-04")
+    data = json.loads(response.content)
+    date_format = '%Y-%m-%dT%H:%M:%S%z'
+    first_date = datetime.strptime(data[0], date_format)
+    last_date = datetime.strptime(data[-1], date_format)
+
+    self.assertNotEqual(data, [])
+    self.assertEqual(first_date, datetime(2023, 9, 4, 9, tzinfo=timezone.utc))
+    self.assertEqual(last_date, datetime(2023, 9, 4, 17, 30, tzinfo=timezone.utc))
+
+  @mock.patch("agenda.libs.brasil_api.is_feriado", return_value=True)
+  def test_mock_feriado(self, _):
     response = self.client.get("/api/agendamentos/horarios/?data_agendamento=2023-12-25")
 
     self.assertEqual(json.loads(response.content), [])
