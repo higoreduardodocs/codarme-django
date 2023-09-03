@@ -22,7 +22,7 @@ def get_horarios_disponiveis(data: date) -> Iterable[datetime]:
   delta = timedelta(minutes=30)
 
   horarios_disponiveis = []
-  while start < end:
+  while start <= end:
     if not Agendamento.objects.filter(data_agendamento=start).exists() and not start.hour in (11, 12):
       horarios_disponiveis.append(start)
     start = start + delta
