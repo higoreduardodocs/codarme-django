@@ -1,0 +1,262 @@
+# Primeiro método
+###
+GET http://localhost:8000/api/agendamentos/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/2/ HTTP/1.1
+
+# Segundo método
+###
+GET http://localhost:8000/api/agendamentos/api-view/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/api-view/2/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/api-view/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T10:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/api-view/1/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T10:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/api-view/2/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/api-view/1/ HTTP/1.1
+
+# Terceiro método
+###
+GET http://localhost:8000/api/agendamentos/api-view-create-update/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/api-view-create-update/2/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/api-view-create-update/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/api-view-create-update/2/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "+55123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/api-view-create-update/2/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/api-view-create-update/3/ HTTP/1.1
+
+# Quarto método
+###
+GET http://localhost:8000/api/agendamentos/api-view-model-serializer/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/api-view-model-serializer/2/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/api-view-model-serializer/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/api-view-model-serializer/2/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/api-view-model-serializer/2/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/api-view-model-serializer/2/ HTTP/1.1
+
+# Quinto método
+###
+GET http://localhost:8000/api/agendamentos/class-based-view-model-serializer/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/class-based-view-model-serializer/7/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/class-based-view-model-serializer/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/class-based-view-model-serializer/7/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/class-based-view-model-serializer/8/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/class-based-view-model-serializer/8/ HTTP/1.1
+
+# Sexto método
+###
+GET http://localhost:8000/api/agendamentos/mixins-model-serializer/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/mixins-model-serializer/7/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/mixins-model-serializer/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/mixins-model-serializer/7/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/mixins-model-serializer/7/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/mixins-model-serializer/7/ HTTP/1.1
+
+# Sétimo método
+###
+GET http://localhost:8000/api/agendamentos/generic-view-model-serializer/ HTTP/1.1
+
+###
+GET http://localhost:8000/api/agendamentos/generic-view-model-serializer/5/ HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/generic-view-model-serializer/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456"
+}
+
+###
+PUT http://localhost:8000/api/agendamentos/generic-view-model-serializer/5/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "123456"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/generic-view-model-serializer/5/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/generic-view-model-serializer/4/ HTTP/1.1
+
+# Oitavo método
+###
+GET http://localhost:8000/api/agendamentos/custom-model-serializer/?username=bhigoreduardo HTTP/1.1
+
+###
+POST http://localhost:8000/api/agendamentos/custom-model-serializer/ HTTP/1.1
+Content-Type: application/json
+
+{
+  "data_agendamento": "2023-11-10T07:30:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com",
+  "telefone_cliente": "123456",
+  "prestador": "bhigoreduardo"
+}
