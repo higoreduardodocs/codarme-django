@@ -82,3 +82,10 @@ class AgendamentoSerializerModelSerialiazerCustom(serializers.ModelSerializer):
     except User.DoesNotExist:
       raise serializers.ValidationError("Usuário não existe")
     return obj
+  
+class PrestadorSerializerModelSerializerCustom(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ['id', 'username', 'agendamentos']
+
+    agendamentos = AgendamentoSerializerModelSerialiazerCustom(many=True, read_only=True)

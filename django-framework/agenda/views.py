@@ -1,16 +1,17 @@
 from django.shortcuts import get_object_or_404
 from django.http import JsonResponse
+from django.contrib.auth.models import User
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
 
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, permissions
 
 from agenda.models import Agendamento, AgendamentoCustom
 from agenda.serializers import AgendamentoSerializer, AgendamentoSerializerCreateUpdate, AgendamentoSerializerModelSerialiazer, AgendamentoSerializerModelSerialiazerCustom
-
+from agenda.serializers import PrestadorSerializerModelSerializerCustom
 
 # Primeiro método
 def agendamento_list(request):
@@ -279,10 +280,41 @@ class AgendamentoDetailGenericView(generics.RetrieveUpdateDestroyAPIView):
   lookup_field = 'id'
 
 # Oitavo método (Model Serializer)
+class IsOnwerOrCreateOnly(permissions.BasePermission):
+  def has_permission(self, request, view):
+    if request.method == "POST":
+      return True
+    
+    username = request.query_params.get("username", "")
+    if request.user.username == username:
+      return True
+    return False
+
 class AgendamentoListGenericCustom(generics.ListCreateAPIView):
   serializer_class = AgendamentoSerializerModelSerialiazerCustom
+  permission_classes = [IsOnwerOrCreateOnly]
 
   def get_queryset(self):
     username = self.request.query_params.get("username", None)
     queryset = AgendamentoCustom.objects.filter(prestador__username=username)
     return queryset
+
+class IsPrestador(permissions.BasePermission):
+  def has_object_permission(self, request, view, obj):
+    if obj.prestador == request.user:
+      return True
+    return False
+
+class AgendamentoDetailGenericCustom(generics.RetrieveUpdateDestroyAPIView):
+  queryset = AgendamentoCustom.objects.all()
+  serializer_class = AgendamentoSerializerModelSerialiazerCustom
+  permission_classes = [IsPrestador]
+  lookup_field = 'id'
+
+  def perform_destroy(self, instance):
+    instance.cancelado = True
+    instance.save()
+
+class PrestadorListGenericCustom(generics.ListAPIView):
+  queryset = User.objects.all()
+  serializer_class = PrestadorSerializerModelSerializerCustom

@@ -9,3 +9,5 @@ class Agendamento(models.Model):
 
 class AgendamentoCustom(Agendamento):
   prestador = models.ForeignKey('auth.User', related_name='agendamentos', on_delete=models.CASCADE)
+
+  cancelado = models.BooleanField(default=False)

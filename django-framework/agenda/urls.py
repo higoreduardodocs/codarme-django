@@ -7,7 +7,7 @@ from agenda.views import agendamento_list_api_view_model_serializer, agendamento
 from agenda.views import AgendamentoListClassBasedView, AgendamentoDetailClassBasedView
 from agenda.views import AgendamentoListMixins, AgendamentoDetailMixins
 from agenda.views import AgendamentoListGenericView, AgendamentoDetailGenericView
-from agenda.views import AgendamentoListGenericCustom
+from agenda.views import AgendamentoListGenericCustom, AgendamentoDetailGenericCustom, PrestadorListGenericCustom
 
 
 urlpatterns = [
@@ -33,5 +33,6 @@ urlpatterns = [
     path("agendamentos/generic-view-model-serializer/<int:id>/", AgendamentoDetailGenericView.as_view()),
 
     path("agendamentos/custom-model-serializer/", AgendamentoListGenericCustom.as_view()),
-
+    path("agendamentos/custom-model-serializer/<int:id>/", AgendamentoDetailGenericCustom.as_view()),
+    path("agendamentos/custom-model-serializer/prestadores/", PrestadorListGenericCustom.as_view()),
 ]

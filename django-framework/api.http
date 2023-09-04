@@ -248,6 +248,11 @@ DELETE http://localhost:8000/api/agendamentos/generic-view-model-serializer/4/ H
 # Oitavo método
 ###
 GET http://localhost:8000/api/agendamentos/custom-model-serializer/?username=bhigoreduardo HTTP/1.1
+Authorization: Basic bhigoreduardo:admin
+
+###
+GET http://localhost:8000/api/agendamentos/custom-model-serializer/14/ HTTP/1.1
+Authorization: Basic bhigoreduardo:admin
 
 ###
 POST http://localhost:8000/api/agendamentos/custom-model-serializer/ HTTP/1.1
@@ -260,3 +265,32 @@ Content-Type: application/json
   "telefone_cliente": "123456",
   "prestador": "bhigoreduardo"
 }
+
+###
+PUT http://localhost:8000/api/agendamentos/custom-model-serializer/14/ HTTP/1.1
+Content-Type: application/json
+Authorization: Basic bhigoreduardo:admin
+
+{
+  "data_agendamento": "2023-11-10T06:50:00Z",
+  "nome_cliente": "Cliente",
+  "email_cliente": "cliente@email.com.br",
+  "telefone_cliente": "123456",
+  "prestador": "bhigoreduardo"
+}
+
+###
+PATCH http://localhost:8000/api/agendamentos/custom-model-serializer/14/ HTTP/1.1
+Content-Type: application/json
+Authorization: Basic bhigoreduardo:admin
+
+{
+  "data_agendamento": "2023-11-10T09:30:00Z"
+}
+
+###
+DELETE http://localhost:8000/api/agendamentos/custom-model-serializer/14/ HTTP/1.1
+Authorization: Basic bhigoreduardo:admin
+
+###
+GET http://localhost:8000/api/agendamentos/custom-model-serializer/prestadores/ HTTP/1.1
